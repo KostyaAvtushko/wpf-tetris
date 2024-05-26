@@ -31,10 +31,10 @@
             Key="Left"
             Command="{Binding MoveLeftCommand}"/>
         <converters:BareKeyBinding
-            Key="X"
+            Key="Z"
             Command="{Binding RotateCWCommand}"/>
         <converters:BareKeyBinding
-            Key="Z"
+            Key="Up"
             Command="{Binding RotateCCWCommand}"/>
     </Window.InputBindings>
     <Grid HorizontalAlignment="Stretch"

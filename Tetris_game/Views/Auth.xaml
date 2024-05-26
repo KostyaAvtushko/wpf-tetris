@@ -1,0 +1,179 @@
+﻿<Window x:Class="Tetris_game.Views.Auth"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tetris_game.Views"
+        mc:Ignorable="d"
+        xmlns:localConverters="clr-namespace:Tetris_game.Converters"
+        Title="Auth" Height="450" Width="800">
+    <Window.Resources>
+        <localConverters:MultiConverter x:Key="multiConverter"/>
+        <Style x:Key="BottomBorderButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,2">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid Height="50px" VerticalAlignment="Top">
+            <Button 
+                Cursor="Hand"
+                x:Name="SwapLogIn"
+                Content="Log In" 
+                Style="{StaticResource BottomBorderButton}" 
+                Width="50px"
+                Height="20px"
+                Margin="-80 10 0 0"
+                Command="{Binding SwapCommand}" RenderTransformOrigin="0.655,0.489"
+            >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="SignUpBlock" />
+                        <Binding ElementName="LogInBlock" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button 
+                Cursor="Hand"
+                x:Name="SwapSignUp"
+                Content="Sign Up" 
+                Style="{StaticResource BottomBorderButton}" 
+                Width="50px"
+                Height="20px"
+                Margin="80 10 0 0"
+                Command="{Binding SwapCommand}" RenderTransformOrigin="0.655,0.489"
+            >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding ElementName="LogInBlock" />
+                        <Binding ElementName="SignUpBlock" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+
+        </Grid>
+        <Grid Width="Auto" Height="250" Margin="0 50 0 0" x:Name="LogInBlock" Visibility="Hidden">
+            <Label Content="Name" Margin="120,38,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox 
+                x:Name="LogInName"    
+                Height="20" 
+                Width="200" 
+                Margin="0,69,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <Label Content="Password" Margin="120,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox 
+                x:Name="LogInPassword"
+                Height="20" 
+                Width="200" 
+                Margin="0,126,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </Grid>
+        <Grid Width="Auto" Height="300" Margin="0 50 0 0" x:Name="SignUpBlock" Visibility="Visible">
+            <Label Content="Name" Margin="120,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.526,0.688"/>
+            <TextBox 
+                x:Name="SignUpName"
+                Height="20" 
+                Width="200" 
+                Margin="0,41,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <Label Content="Password" Margin="120,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox 
+                x:Name="SignUpPassword"
+                Height="20" 
+                Width="200" 
+                Margin="0,97,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Label Content="Confirm Password" Margin="120,132,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox 
+                x:Name="SignUpPasswordConfirm"
+                Height="20" 
+                Width="200" 
+                Margin="0,163,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+        </Grid>
+        <Grid Height="80" VerticalAlignment="Bottom">
+            <Button 
+                Cursor="Hand"
+                Height="20"
+                Command="{Binding AuthCommand}" 
+                Content="Submit"
+                Margin="0 0 0 0"
+                Width="56"  
+                Padding="2"  
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+            >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource multiConverter}">
+                        <Binding Path="Text" ElementName="LogInName" />
+                        <Binding Path="Text" ElementName="LogInPassword" />
+                        <Binding Path="Text"  ElementName="SignUpName" />
+                        <Binding Path="Text" ElementName="SignUpPassword" />
+                        <Binding Path="Text" ElementName="SignUpPasswordConfirm" />
+                        <Binding Path="Visibility" ElementName="LogInBlock" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
